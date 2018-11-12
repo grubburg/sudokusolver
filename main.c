@@ -31,8 +31,8 @@ void readboard(boardtype *b){
     int i, j;
 
     for(i=0;i<DIMENSION;i++){
-        scanf("%d %d %d %d %d %d %d %d", &(b->m[0][i]), &(b->m[0][i]), &(b->m[0][i]), &(b->m[0][i]),
-              &(b->m[0][i]), &(b->m[0][i]), &(b->m[0][i]), &(b->m[0][i]));
+        scanf("%d %d %d %d %d %d %d %d %d", &(b->m[0][i]), &(b->m[1][i]), &(b->m[2][i]), &(b->m[3][i]),
+              &(b->m[4][i]), &(b->m[5][i]), &(b->m[6][i]), &(b->m[7][i]), &(b->m[8][i]));
 
 
     }
@@ -43,10 +43,13 @@ void readboard(boardtype *b){
 void printboard(boardtype *b){
 
     int i,j;
-    for(i=0;i<DIMENSION+1;i++){
+    for(i=0;i<DIMENSION;i++){
         for (j=0;j<DIMENSION;j++){
-            
+            printf("%d ", b->m[j][i]);
+
+
         }
+        printf("\n");
     }
 
 }
@@ -58,5 +61,6 @@ int main() {
     boardtype *b;
 
     readboard(b);
+    printboard(b);
     return 0;
 }

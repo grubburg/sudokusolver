@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 #include "sudokuhelper.h"
 
 
@@ -34,10 +35,17 @@ bool is_a_solution(boardtype *b){
 }
 
 void process_solution(boardtype *b){
-    printf("Found Solution!\n");
-    print_board(b);
-    exit(0);
 
+    if(b->ratemode){
+        print_rating(b);
+        exit(0);
+    }
+
+    else{
+        printf("Found Solution!\n");
+        print_board(b);
+        exit(0);
+    }
 }
 
 void next_square(int *x, int *y, boardtype *b){
@@ -158,10 +166,34 @@ void check_square(int x, int y, boardtype *b, bool *possible){
     }
 }
 
+double rate_sudoku(boardtype *b){
+
+    double rating;
+
+    rating = 4*(log((b->movecounter)/8)/log(5));
+
+    return rating;
+
+}
+
+void print_rating(boardtype *b){
+
+    printf("Sudoku rating: %lf /10\n", rate_sudoku(b));
+
+}
 
 void print_help(){
     printf("Enter your sudoku as a series of space delimited row, using 0 to represent blank spaces.\n");
     printf("For example: \n");
+    printf("0 0 0 0 0 0 0 1 2\n");
+    printf("0 0 0 0 3 5 0 0 0\n");
+    printf("0 0 0 6 0 0 0 7 0\n");
+    printf("7 0 0 0 0 0 3 0 0\n");
+    printf("0 0 0 4 0 0 8 0 0\n");
+    printf("1 0 0 0 0 0 0 0 0\n");
+    printf("0 0 0 1 2 0 0 0 0\n");
+    printf("0 8 0 0 0 0 0 4 0\n");
+    printf("0 5 0 0 0 0 6 0 0\n");
 }
 
 
@@ -189,6 +221,9 @@ void read_board(boardtype *b){
             }
         }
     }
+
+    printf("Entered Board: \n");
+    print_board(b);
 }
 
 
@@ -212,5 +247,5 @@ void print_board(boardtype *b){
     }
     printf("+---------+---------+---------+\n");
     printf("\n");
-    printf("Moves: %d\n", b->movecounter);
+
 }

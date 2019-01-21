@@ -32,10 +32,7 @@ void construct_candidates(int k, boardtype *b, int c[], int *ncandidates){
             c[*ncandidates]=i;
             *ncandidates = *ncandidates + 1;
         }
-
     }
-
-
 }
 
 void backtrack(int a[], int k, boardtype *board){
@@ -83,11 +80,14 @@ int main(int argc, char* argv[]) {
                 print_help();
                 break;
             case 's' :
+                b->ratemode=false;
                 read_board(b);
                 backtrack(a,k,b);
                 break;
             case 'r' :
-                printf("rating");
+                b->ratemode = true;
+                read_board(b);
+                backtrack(a,k,b);
                 break;
             default :
                 printf("Invalid Option\n");
@@ -104,6 +104,6 @@ int main(int argc, char* argv[]) {
         printf("\t-r: Rate Mode - Rates your Sudoku's difficulty\n");
         exit(0);
     }
-    
+
     return 0;
 }

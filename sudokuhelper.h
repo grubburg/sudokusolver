@@ -22,6 +22,7 @@ typedef struct {
     int freecount;
     point move[NCELLS + 1];
     int movecounter;
+    bool ratemode;
 
 }boardtype;
 
@@ -40,6 +41,8 @@ bool is_a_solution(boardtype *b);
 void process_solution(boardtype *b);
 int count_poss(int x, int y, boardtype *b);
 void print_help();
+double rate_sudoku(boardtype *b);
+void print_rating(boardtype *b);
 
 
 #endif //SUDOKUSOLVER_SUDOKUHELPER_H

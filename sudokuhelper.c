@@ -12,7 +12,6 @@ void make_move(int a[], int k, boardtype *b){
 
     b->m[b->move[k].x][b->move[k].y]=a[k];
     b->freecount--;
-
 }
 
 void unmake_move(int k, boardtype *b){
@@ -23,6 +22,8 @@ void unmake_move(int k, boardtype *b){
 
 
 bool is_a_solution(boardtype *b){
+
+    b->movecounter++;
 
     if(b->freecount==0){
 
@@ -158,6 +159,13 @@ void check_square(int x, int y, boardtype *b, bool *possible){
 }
 
 
+void print_help(){
+    printf("Enter your sudoku as a series of space delimited row, using 0 to represent blank spaces.\n");
+    printf("For example: \n");
+}
+
+
+
 void read_board(boardtype *b){
 
     int i, j;
@@ -166,6 +174,7 @@ void read_board(boardtype *b){
     int row[DIMENSION + 1];
 
     b->freecount = 0;
+    b->movecounter = 0;
 
     for(i = 0; i < DIMENSION; i++) {
 
@@ -187,9 +196,6 @@ void print_board(boardtype *b){
 
     int i,j;
 
-
-
-
     for(i=0;i<DIMENSION;i++){
 
         if((i%3)==0){
@@ -200,19 +206,11 @@ void print_board(boardtype *b){
             if((j%3)==0){
                 printf("|");
             }
-
-
             printf(" %d ", b->m[j][i]);
-
-
         }
         printf("|\n");
-
-
-
-
-
     }
     printf("+---------+---------+---------+\n");
     printf("\n");
+    printf("Moves: %d\n", b->movecounter);
 }

@@ -12,9 +12,7 @@ void construct_candidates(int k, boardtype *b, int c[], int *ncandidates){
     int x,y,i;
 
     bool possible[DIMENSION+1];
-
     next_square(&x,&y,b);
-
     b->move[k].x=x;
     b->move[k].y=y;
 
@@ -69,21 +67,43 @@ void backtrack(int a[], int k, boardtype *board){
     }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
 
     boardtype *b;
-
     int k=0;
     int *a;
 
+
+    b = (boardtype *)malloc(sizeof(boardtype));
     a = (int *)malloc(NCELLS*sizeof(int));
 
-    read_board(b);
+    if(argc == 2){
+        switch(argv[1][1]){
+            case 'h' :
+                print_help();
+                break;
+            case 's' :
+                read_board(b);
+                backtrack(a,k,b);
+                break;
+            case 'r' :
+                printf("rating");
+                break;
+            default :
+                printf("Invalid Option\n");
+                exit(0);
 
-    printf("Input:\n");
-    print_board(b);
+        }
 
-    backtrack(a,k,b);
+    }
 
+    else {
+        printf("usage:\n");
+        printf("\t-h: Show help\n");
+        printf("\t-s: Solve Mode - Solves your Sudoku\n");
+        printf("\t-r: Rate Mode - Rates your Sudoku's difficulty\n");
+        exit(0);
+    }
+    
     return 0;
 }

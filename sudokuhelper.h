@@ -21,6 +21,7 @@ typedef struct {
     int m[DIMENSION + 1][DIMENSION + 1];
     int freecount;
     point move[NCELLS + 1];
+    int movecounter;
 
 }boardtype;
 
@@ -38,6 +39,7 @@ void unmake_move(int k, boardtype *b);
 bool is_a_solution(boardtype *b);
 void process_solution(boardtype *b);
 int count_poss(int x, int y, boardtype *b);
+void print_help();
 
 
 #endif //SUDOKUSOLVER_SUDOKUHELPER_H

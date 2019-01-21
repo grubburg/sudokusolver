@@ -187,17 +187,32 @@ void print_board(boardtype *b){
 
     int i,j;
 
-    printf("\n");
+
+
 
     for(i=0;i<DIMENSION;i++){
+
+        if((i%3)==0){
+            printf("+---------+---------+---------+\n");
+        }
+
         for (j=0;j<DIMENSION;j++){
-            printf("%d ", b->m[j][i]);
+            if((j%3)==0){
+                printf("|");
+            }
+
+
+            printf(" %d ", b->m[j][i]);
 
 
         }
-        printf("\n");
+        printf("|\n");
+
+
+
 
 
     }
+    printf("+---------+---------+---------+\n");
     printf("\n");
 }

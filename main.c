@@ -79,7 +79,11 @@ int main() {
     a = (int *)malloc(NCELLS*sizeof(int));
 
     read_board(b);
-    backtrack(a,k,b);
+
+    printf("Input:\n");
     print_board(b);
+
+    backtrack(a,k,b);
+
     return 0;
 }

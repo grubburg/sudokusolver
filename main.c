@@ -1,3 +1,10 @@
+/*
+ * Sudoku solver by John Stephenson.
+ * Based on ideas from S. Skiena's Algorithm Design Manual.
+ */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -98,6 +105,8 @@ int main(int argc, char* argv[]) {
     }
 
     else {
+
+        printf("Sudoku Solver by John Stephenson\n");
         printf("usage:\n");
         printf("\t-h: Show help\n");
         printf("\t-s: Solve Mode - Solves your Sudoku\n");

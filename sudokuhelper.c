@@ -25,6 +25,10 @@ void print_help(){
 
 void read_board(boardtype *b){
 
+    /* reads the board entered line by line into an array, performs sanity checks on the input,
+     * then stores it in a 2 dimensional array.
+     */
+
     int i, j;
 
 
@@ -42,6 +46,11 @@ void read_board(boardtype *b){
 
         for(j = 0; j < DIMENSION; j++) {
 
+            if((row[j]>9)||(row[j]<1)){
+                printf("Critical input error!\n");
+                exit(1);
+            }
+
             b->m[j][i]=row[j];
             if(!row[j]) {
                 b->freecount++;
@@ -49,11 +58,20 @@ void read_board(boardtype *b){
         }
     }
 
+    if(b->freecount < 17){
+        printf("Not a valid sudoku puzzle!\n");
+        exit(1);
+    }
+
     printf("Entered Board: \n");
     print_board(b);
 }
 
 void possible_values(int x, int y, boardtype *b, bool *possible){
+
+
+    /* checks valid moves for a given tile */
+
 
     int i;
     for(i=0;i<DIMENSION+1;i++){
@@ -102,6 +120,8 @@ void check_square(int x, int y, boardtype *b, bool *possible){
 
 int count_poss(int x, int y, boardtype *b){
 
+    /* count the number of candidate moves for a given square */
+
     int count = 0;
     bool possible[DIMENSION + 1];
 
@@ -125,7 +145,12 @@ int count_poss(int x, int y, boardtype *b){
 
 void next_square(int *x, int *y, boardtype *b){
 
-
+    /* choose the next square to fill based on which square has the fewest candidate moves
+     *
+     * If a square with 1 candidate move is found, it is automatically chosen
+     *
+     * If a square with 0 candidate moves is found, the current board is rejected as the
+     * path to a complete solution and the function returns*/
 
     int i, j;
     int count;
@@ -183,6 +208,10 @@ void unmake_move(int k, boardtype *b){
 
 bool is_a_solution(boardtype *b){
 
+    /* validates the current board state as a solution by checking
+     * the number of free squares remaining. If it is 0, a solution
+     * has been achieved (in theory) */
+
     b->movecounter++;
 
     if(b->freecount==0){
@@ -209,6 +238,12 @@ void process_solution(boardtype *b){
 
 double rate_sudoku(boardtype *b){
 
+    /* An attempt at a rating system
+     *
+     * takes the log of the numbe rof moves required to solve and trandforms it
+     * to make it out of ten (roughly, rating can exceed 10/10)*/
+
+
     double rating;
 
     rating = 4*(log((b->movecounter)/8)/log(5));
@@ -224,6 +259,9 @@ void print_rating(boardtype *b){
 }
 
 void print_board(boardtype *b){
+
+    /* print a formatted board */
+
 
     int i,j;
 

@@ -46,7 +46,7 @@ void read_board(boardtype *b){
 
         for(j = 0; j < DIMENSION; j++) {
 
-            if((row[j]>9)||(row[j]<1)){
+            if((row[j]>9)||(row[j]<0)){
                 printf("Critical input error!\n");
                 exit(1);
             }

@@ -246,7 +246,7 @@ double rate_sudoku(boardtype *b){
 
     double rating;
 
-    rating = 4*(log((b->movecounter)/8)/log(5));
+    rating = 10 - 300/(float)(b->movecounter);
 
     return rating;
 

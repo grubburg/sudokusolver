@@ -1,9 +1,9 @@
-#Sudoku Solver
+# Sudoku Solver
 A command line program to solve sudoku puzzles
 
-##How to get it running
+## How to get it running
 
-###Installation
+### Installation
 
 1. Clone the repository:
 ```
@@ -20,7 +20,7 @@ make
 ```
 
 
-###How to use it:
+### How to use it:
 
 Use the '-s' flag to enter solve mode, or the '-r' flag to enter rating mode.
 

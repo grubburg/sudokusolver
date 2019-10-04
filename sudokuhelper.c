@@ -255,7 +255,7 @@ double rate_sudoku(boardtype *b){
 void print_rating(boardtype *b){
 
     printf("Sudoku difficulty rating: %lf /10\n", rate_sudoku(b));
-
+    printf("Moves taken: %d\n", b->movecounter);
 }
 
 void print_board(boardtype *b){
